@@ -6,17 +6,16 @@
     <title>Search Engine</title>
     <style>
         div{
-            background-image: url("rose-165819.jpg");
+            background-image: url("eagle-339128.jpg");
             background-size: cover;
             color: white;
             padding: 10px;
             height: 1000px;
-            font-size: xx-large;
+            font-size: 50px;
+            font-family: 'Courier New', Courier, monospace;
         }
         article {
-            border: 2px solid blue;
             width: 100%;
-            height: 500px;
         }
         a{
             text-decoration: none;
@@ -27,32 +26,63 @@
             width: 50px;
             height: 50px;
         }
+        input {
+            height: 50px;
+            width: 50px;
+            font-size: 35px;
+            align-self: center;
+            color: green;
+            background: none;
+        }
+        h1{
+            text-align: center;
+            font-size: 50px;
+            background-color: aquamarine;
+            height: 70px; width: 85%;
+            margin-left: 50px;
+        }
+        p{
+            font-size: xx-large;
+        }
+        section{
+            border: 2px solid rgb(40, 176, 180);
+            width: 90%;
+            padding: 10px;
+            margin-left: 20px;
+            background-color: rgba(52, 253, 129, 0.568);
+        }
     </style>
 
 </head>
 <body>
 
     <div>
-        <img src="lotus-978659.jpg">
-        <a href="#storage" title="add item"><img src="sign.png"></a>
+        <img src="cross-709694_1920.jpg">
+        <a href="#storage" title="add item" style="margin-left: 200px;"><img src="sign.png"></a>
         <br><br>
-        <p>This page allows you to store items<br>and search for any item stored.</p>
+        <p>This page allows you<br>to store items and<br>search for any item stored.</p>
         <p style="font-size: x-large;">You can give one item multiple names<br>and also multiple items the same name.</p>
-        <input type="search" id="go" style="width: 80%; height: 35px; margin-left: 30px;" value="search for item">
-        <input type="submit" value="&#128269;" id="Submit_2" style="height: 35px;">
+        <input type="search" id="go" style="width: 80%; background-color: azure; margin-left: 30px;" value="search for item">
+        <input type="submit" value="&#128269;" id="Submit_2" style="align-self: center;">
         <p class="output" id="view"></p>
     </div>
 
     <article id="storage">
         <h1>Store an Item</h1>
-        Item value: <input type="text" id="item_value" style="width: 70%;">
-        <input type="submit" value="Submit" id="submit_item"><br><br>
-        Item name: <input type="text" id="item_name">
-        <input type="submit" value="Submit" id="submit_name"><br>
-        <input type="submit" value="Save" id="Submit_1">
+        <section>
+            <p>Item:</p>
+            <input type="text" id="item_value" style="width: 80%; margin-left: 30px;">
+            <input type="submit" value="&#10004;" id="submit_item">
+            <p>Name:</p>
+            <input type="text" id="item_name" style="width: 80%; margin-left: 30px;">
+            <input type="submit" value="&#10004;" id="submit_name">
+            <p>
+                save:<input type="submit" value="&#10004;" id="Submit_1" title="save">
+            </p>
+        </section>
     </article>
 
-    <input type="button" value="tester" id="tester">
+    <br><input type="button" value="tester" id="tester">
     <p class="output" id="test"></p>
 
     <script type="text/javascript">
@@ -114,7 +144,7 @@
                 }
                 given_names = [];
             }else{
-                vw_2.innerHTML = "Provide an item!"
+                vw.innerHTML = "Provide an item!"
             }
         }
         sbmt_1.addEventListener("click",add)
