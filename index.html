@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>Search Engine</title>
+    <style>
+        div{
+            background-image: url("rose-165819.jpg");
+            background-size: cover;
+            color: white;
+            padding: 10px;
+            height: 500px;
+            font-size: xx-large;
+        }
+        article {
+            border: 2px solid blue;
+            width: 100%;
+            height: 500px;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+            margin-left: 50px; 
+        }
+        img{
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div>
+        <img src="lotus-978659.jpg">
+        <a href="#storage" title="add item"><img src="sign.png"></a>
+        <br><br>
+        <p>This page allows you to store items<br>and search for any item stored.</p>
+        <p style="font-size: x-large;">You can give one item multiple names<br>and also multiple items the same name.</p>
+        <input type="search" id="go" style="width: 80%; height: 35px; margin-left: 30px;" value="search for item">
+        <input type="submit" value="&#128269;" id="Submit_2" style="height: 35px;">
+        <p class="output" id="view"></p>
+    </div>
+
+    <article id="storage">
+        <h1>Store an Item</h1>
+        Item value: <input type="text" id="item_value" style="width: 70%;">
+        <input type="submit" value="Submit" id="submit_item"><br><br>
+        Item name: <input type="text" id="item_name">
+        <input type="submit" value="Submit" id="submit_name"><br>
+        <input type="submit" value="Save" id="Submit_1">
+    </article>
+
+    <input type="button" value="tester" id="tester">
+    <p class="output" id="test"></p>
+
+    <script type="text/javascript">
+
+        var txt = document.getElementById("go");
+        var sbmt = document.getElementById("Submit_2");
+        var vw = document.getElementById("view");
+        var vw_2 = document.getElementById("view_2");
+        var wtd = document.getElementById("ck");
+        var item = document.getElementById("item_value");
+        var nm = document.getElementById("item_name")
+        var sbmt_1 = document.getElementById("Submit_1");
+        var sbmt_itm = document.getElementById("submit_item");
+        var sbmt_nm = document.getElementById("submit_name");
+
+        var tester = document.getElementById("tester");
+        var test = document.getElementById("test");
+
+
+        var given_item = "";
+        function add_itm(){
+            if(item.value.length>0){
+                checker(item.value,nm.value);
+                if(item_not_exist){
+                    given_item = item.value;
+                }
+            }
+        }
+        sbmt_itm.addEventListener("click",add_itm);
+
+        var given_names = [];
+        var not_exist = true;
+        function add_name(){
+            not_exist = true;
+            for(i in given_names){
+                if(given_names[i]==nm.value){
+                    not_exist = false;
+                    break;
+                }
+            }
+            if(not_exist){
+                given_names.push(nm.value);
+            }
+        }
+        sbmt_nm.addEventListener("click",add_name);
+
+        function add(){
+            if(given_item.length>0){
+                histry[histry.length] = histry.length+1;
+                Elmnts[histry[histry.length-1]] = given_item;
+                given_item = "";
+                for(x=0;x<given_names.length;x++){
+                    checker(item.value,given_names[x]);
+                    if(name_not_exist){
+                        names_set[given_names[x]] = [histry[histry.length-1]];
+                    }else{
+                        names_set[given_names[x]].push(histry[histry.length-1]);
+                    }
+                }
+                given_names = [];
+            }else{
+                vw_2.innerHTML = "Provide an item!"
+            }
+        }
+        sbmt_1.addEventListener("click",add)
+        
+        function srch(){
+            list_of_searched = [];
+            for(i in names_set[txt.value]){
+                list_of_searched.push(Elmnts[names_set[txt.value][i]]);
+            }
+            if(list_of_searched.length>0){
+                vw.innerHTML = list_of_searched;
+            }else if(txt.value.length>0){
+                vw.innerHTML = "No item found with name "+txt.value;
+            }
+        }
+        sbmt.addEventListener("click",srch);
+
+        function vew(){
+            for(i in names_set){
+                test.innerHTML = i+" "+names_set[i]+"<br>";
+            }
+        }
+        tester.addEventListener("click",vew);
+
+        var Elmnts = {};
+        var histry = [];
+        var names_set = {};
+
+        function checker(a,b){
+            name_not_exist = true;
+            item_not_exist = true
+            for(i in Elmnts){
+                if(Elmnts[i]==a){
+                    item_not_exist = false;
+                    break;
+                }
+            }
+            for(i in names_set){
+                if(i==b){
+                    name_not_exist = false;
+                    break;
+                }
+            }
+        }
+
+        function space_checker(a){
+            only_space = true;
+            spc = " ";
+            for(i in a){
+                if(a[i]!=spc[0]){
+                    only_space = false;
+                    break;
+                }
+            }
+        }
+    
+    
+    </script>
+</body>
+</html>
